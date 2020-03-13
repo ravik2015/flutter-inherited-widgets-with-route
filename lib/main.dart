@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:navmess/screens/Page1.dart';
+import 'package:navmess/screens/Page2.dart';
+import 'package:navmess/screens/Page3.dart';
+import 'package:navmess/widgets/AppState.dart';
 
 void main() => runApp(MyApp());
 
@@ -36,76 +40,6 @@ class MyNav extends StatelessWidget {
           }
         },
         initialRoute: 'page1',
-      ),
-    );
-  }
-}
-
-class MyData extends InheritedWidget {
-  MyData({Key key, this.child, this.data}) : super(key: key, child: child);
-
-  final Widget child;
-  final String data;
-
-  static MyData of(BuildContext context) {
-    return (context.inheritFromWidgetOfExactType(MyData) as MyData);
-  }
-
-  @override
-  bool updateShouldNotify(MyData oldWidget) {
-    return true;
-  }
-}
-
-class PageOne extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Page 1'),
-      ),
-      backgroundColor: Colors.red,
-      body: RaisedButton(
-        child: Text("Goto page 2, data=${MyData.of(context).data}"),
-        onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => PageTwo()));
-        },
-      ),
-    );
-  }
-}
-
-class PageTwo extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Page 2'),
-      ),
-      backgroundColor: Colors.red,
-      body: RaisedButton(
-        child: Text("Goto page 3, data=${MyData.of(context).data}"),
-        onPressed: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => PageThree()));
-        },
-      ),
-    );
-  }
-}
-
-class PageThree extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Page 3'),
-      ),
-      backgroundColor: Colors.green,
-      body: RaisedButton(
-        child: Text("Goto page 4, data=${MyData.of(context).data}"),
-        onPressed: null,
       ),
     );
   }
